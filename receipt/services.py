@@ -3,8 +3,8 @@ from django.shortcuts import get_object_or_404
 from .models import Receipt
 
 
-def get_paginated_receipts(page, per_page=10):
-    receipts = Receipt.objects.all().order_by('-date', '-id')
+def get_paginated_receipts(section_id, page, per_page=10):
+    receipts = Receipt.objects.filter(section_id=section_id).order_by('-date', '-id')
     paginator = Paginator(receipts, per_page)
     try:
         paginated_receipts = paginator.page(page)

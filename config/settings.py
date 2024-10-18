@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'user',
     'receipt',
+    'section',
 ]
 
 MIDDLEWARE = [

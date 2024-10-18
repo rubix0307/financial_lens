@@ -1,12 +1,15 @@
 from django.contrib.auth import get_user_model
 from django.db import models
 
+from section.models import Section
+
 
 class Receipt(models.Model):
     shop_name = models.CharField(max_length=255, null=True, blank=True)
     shop_address = models.CharField(max_length=1024, null=True, blank=True)
     photo = models.ImageField(upload_to='receipt/', null=True, blank=True, max_length=1024)
     owner = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
+    section = models.ForeignKey(Section, on_delete=models.CASCADE, related_name='receipts', null=True, blank=True)
     date = models.DateTimeField()
 
     def __str__(self):
