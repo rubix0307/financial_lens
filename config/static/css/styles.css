@@ -1,0 +1,25 @@
+:root {
+    --tg-color-scheme: light;
+    --tg-theme-bg-color: #ffffff;
+    --tg-theme-section-bg-color: #ffffff;
+    --tg-theme-secondary-bg-color: #f0f0f0;
+    --tg-theme-text-color: #222222;
+    --tg-theme-hint-color: #a8a8a8;
+    --tg-theme-link-color: #2678b6;
+    --tg-theme-button-color: #50a8eb;
+    --tg-theme-button-text-color: #ffffff;
+    --tg-theme-header-bg-color: #527da3;
+    --tg-theme-accent-text-color: #1c93e3;
+    --tg-theme-section-header-text-color: #3a95d5;
+    --tg-theme-subtitle-text-color: #82868a;
+    --tg-theme-destructive-text-color: #cc2929;
+    --tg-theme-section-separator-color: #d9d9d9;
+
+    --green-color: #70b768;
+    --danger-color: #df3f40;
+}
+
+* {
+    font-family: Inter;
+
+}
