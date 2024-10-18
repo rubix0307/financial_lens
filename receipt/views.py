@@ -7,9 +7,10 @@ from .services import delete_receipt, get_paginated_receipts
 
 
 def receipt_list_view(request):
+    section_id = request.GET.get('section', 1)
     page = request.GET.get('page', 1)
     per_page = request.GET.get('per_page', 3)
-    paginated_receipts = get_paginated_receipts(page, per_page)
+    paginated_receipts = get_paginated_receipts(section_id, page, per_page)
     return render(request, 'receipt/feed/receipt_list.html', {'receipts': paginated_receipts})
 
 
