@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     'user',
     'receipt',
     'section',
+    'currency',
 ]
 
 MIDDLEWARE = [

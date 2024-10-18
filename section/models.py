@@ -1,6 +1,8 @@
 from django.db import models
 from django.contrib.auth import get_user_model
 
+from currency.models import Currency
+
 
 class Section(models.Model):
     name = models.CharField(max_length=255, null=True, blank=True)
@@ -13,6 +15,7 @@ class Section(models.Model):
 class SectionUser(models.Model):
     section = models.ForeignKey(Section, on_delete=models.CASCADE)
     user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
+    currency = models.ForeignKey(Currency, on_delete=models.CASCADE, null=True, blank=True)
     is_owner = models.BooleanField(default=False)
     is_base = models.BooleanField(default=False)
 

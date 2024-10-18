@@ -1,6 +1,7 @@
 from django.contrib.auth import get_user_model
 from django.db import models
 
+from currency.models import Currency
 from section.models import Section
 
 
@@ -10,6 +11,7 @@ class Receipt(models.Model):
     photo = models.ImageField(upload_to='receipt/', null=True, blank=True, max_length=1024)
     owner = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
     section = models.ForeignKey(Section, on_delete=models.CASCADE, related_name='receipts', null=True, blank=True)
+    currency = models.ForeignKey(Currency, on_delete=models.CASCADE, null=True, blank=True)
     date = models.DateTimeField()
 
     def __str__(self):
