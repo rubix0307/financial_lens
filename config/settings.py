@@ -32,6 +32,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'user',
 ]
 
 MIDDLEWARE = [
@@ -129,13 +130,14 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'financial_lens', 'static'),]
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'config', 'static'),]
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'financial_lens', 'media')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'config', 'media')
 MEDIA_URL = '/media/'
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_URL = reverse_lazy('403')
+AUTH_USER_MODEL = 'user.CustomUser'
 LOGIN_REDIRECT_URL = reverse_lazy('403')
