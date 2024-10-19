@@ -11,7 +11,7 @@ class Currency(models.Model):
 class CurrencyRateHistory(models.Model):
     currency = models.ForeignKey(Currency, on_delete=models.CASCADE)
     per_usd = models.DecimalField(max_digits=14, decimal_places=7)
-    date = models.DateField()
+    date = models.DateTimeField()
 
     def __str__(self):
         return f'{self.id}: {self.per_usd}'
