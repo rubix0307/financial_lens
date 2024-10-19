@@ -144,3 +144,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_URL = reverse_lazy('403')
 AUTH_USER_MODEL = 'user.CustomUser'
 LOGIN_REDIRECT_URL = reverse_lazy('403')
+
+APILAYER_API_KEYS = os.getenv('APILAYER_API_KEYS', '').split(',')
