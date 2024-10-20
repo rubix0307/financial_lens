@@ -1,0 +1,21 @@
+{% load custom_filters %}
+
+{# examples #}
+{# {% include 'path/pagination.html' with page_obj=page_obj pagination_attrs='href=/get?p={i}' %} #}
+{# {% include 'path/pagination.html' with page_obj=page_obj pagination_attrs='hx-get=/get?p={i} hx-target=#content'%} #}
+
+<ul class="pagination">
+    {% for i in page_obj.paginator.page_range %}
+
+        {% if i >= page_obj.number|add:-3 and i <= page_obj.number|add:3 or page_obj.number <= 3 and i <= 7 or i > page_obj.paginator.num_pages|add:-7 and page_obj.number > page_obj.paginator.num_pages|add:-3 %}
+            {% with i_str=i|stringformat:"s" %}
+                {% with replace_pattern="{i},"|add:i_str %}
+                    <a class="page-item{% if i == page_obj.number %} active{% endif %}" {{ pagination_attrs|replace:replace_pattern }}
+                    >{{ i }}</a>
+                {% endwith %}
+            {% endwith %}
+
+        {% endif %}
+
+    {% endfor %}
+</ul>
