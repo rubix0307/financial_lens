@@ -23,3 +23,20 @@
     font-family: Inter;
 
 }
+
+.pagination {
+    display: flex;
+    list-style: none;
+
+    & .page-item {
+        width: 20px;
+        text-align: center;
+        padding: 5px;
+        border: 2px black solid;
+        margin: 0 5px;
+
+        &.active {
+            border-color: red;
+        }
+    }
+}

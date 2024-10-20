@@ -1,0 +1,9 @@
+<div class="feed">
+
+    {% for receipt in page_obj.object_list %}
+        {% include 'section/feed/list_item.html' with receipt=receipt %}
+    {% endfor %}
+
+    {% include 'common/pagination.html' with page_obj=page_obj pagination_attrs='href=?page={i}'%}
+
+</div>
