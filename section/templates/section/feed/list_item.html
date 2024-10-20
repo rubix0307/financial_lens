@@ -1,0 +1,10 @@
+<div class="feed list-item">
+
+    <div class="name">{{ receipt.shop_name }}</div>
+    <ul class="products">
+        {% for product in receipt.products.all %}
+        	<li>{{ product.name }}</li>
+        {% endfor %}
+    </ul>
+
+</div>
