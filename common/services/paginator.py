@@ -1,14 +1,12 @@
 from django.core.paginator import Page, EmptyPage, PageNotAnInteger, Paginator
 from dataclasses import dataclass, field
-from typing import List, Optional, TypeVar, Generic
+from typing import List, Optional
 
-
-T = TypeVar('T')
 
 @dataclass
-class PaginatedResult(Generic[T]):
+class PaginatedResult:
     _paginated_objects: Page = field(repr=False)
-    items: List[T]
+    items: List
     total_pages: int
     total_items: int
     current_page: int
@@ -21,15 +19,15 @@ class PaginatedResult(Generic[T]):
         return self._paginated_objects
 
 
-def get_paginated_objects(obj: List[T], page: int, per_page: int = 10) -> PaginatedResult[T]:
+def get_paginated_objects(obj: List, page: int, per_page: int = 10) -> PaginatedResult:
     """
     Args:
-        obj (List[T]): The list of objects to paginate.
+        obj (List): The list of objects to paginate.
         page (int): The current page number.
         per_page (int): The number of objects on the page.
 
     Returns:
-        PaginatedResult[T]: Object with pagination information.
+        PaginatedResult: Object with pagination information.
     """
     if type(page) is not int:
         page = 1
