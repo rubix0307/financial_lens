@@ -129,3 +129,13 @@ class TestPaginationService(TestCase):
         self.assertIsInstance(page_object, Page)
         self.assertEqual(page_object.number, 1)
         self.assertEqual(len(page_object.object_list), 10)
+
+    def test_str_page_number(self):
+        page_number = '1'
+        per_page = 10
+        result = get_paginated_objects(self.data, page_number, per_page)
+
+        page_object = result()
+        self.assertIsInstance(page_object, Page)
+        self.assertEqual(page_object.number, 1)
+        self.assertEqual(len(page_object.object_list), 10)

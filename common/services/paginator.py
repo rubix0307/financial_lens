@@ -29,6 +29,10 @@ def get_paginated_objects(obj: List, page: int, per_page: int = 10) -> Paginated
     Returns:
         PaginatedResult: Object with pagination information.
     """
+
+    if type(page) is str and str(page).isdigit():
+        page = int(page)
+
     if type(page) is not int:
         page = 1
     elif page < 1:
