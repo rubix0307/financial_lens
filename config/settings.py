@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'section',
     'currency',
     'common',
+    'open_ai',
 ]
 
 MIDDLEWARE = [
