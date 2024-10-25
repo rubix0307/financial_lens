@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'currency',
     'common',
     'open_ai',
+    'bot',
 ]
 
 MIDDLEWARE = [
@@ -149,3 +150,8 @@ AUTH_USER_MODEL = 'user.CustomUser'
 LOGIN_REDIRECT_URL = reverse_lazy('403')
 
 APILAYER_API_KEYS = os.getenv('APILAYER_API_KEYS', '').split(',')
+
+
+# telegram bot
+TELEGRAM_BOT_TOKEN = os.getenv('TELEGRAM_BOT_TOKEN')
+TELEGRAM_WEBHOOK_URL = os.getenv('TELEGRAM_WEBHOOK_URL')
