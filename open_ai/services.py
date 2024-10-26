@@ -3,7 +3,7 @@ import os
 
 from openai import OpenAI
 
-from open_ai.structures import ReceiptData
+from open_ai.structures import ProductData, ReceiptData
 from open_ai.decorators import handle_openai_errors
 from open_ai.managers import TmpFileManager, TmpThreadManager
 
@@ -57,4 +57,8 @@ class OpenAIService(BaseOpenAIMethods):
 
                     response_message = self._get_response(run.thread_id)
                     response_json = json.loads(response_message)
-                    return ReceiptData(**response_json)
+                    products = response_json.pop('products')
+
+                    receipt_data = ReceiptData(**response_json)
+                    receipt_data.products = [ProductData(**product_data) for product_data in products]
+                    return receipt_data

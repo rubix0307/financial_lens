@@ -2,7 +2,7 @@ from dataclasses import dataclass, fields
 
 
 @dataclass
-class Product:
+class ProductData:
     category_id: int = None
     name_en: str = None
     name_original: str = None
@@ -15,7 +15,7 @@ class ReceiptData:
     is_recipe: bool = False
     shop_address: str = None
     shop_name: str = None
-    products: list[Product] = None
+    products: list[ProductData] = None
     currency: str = None
     date: str = None
 
