@@ -9,8 +9,8 @@
 __pycache__/
 local_settings.py
 db.sqlite3
-/budget_lens/media/*/*.jpg
-/budget_lens/media/*/*.png
+/config/media/*/*.jpg
+/config/media/*/*.png
 
 ### Linux ###
 *~
