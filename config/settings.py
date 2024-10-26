@@ -140,6 +140,8 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'config', 'static'),]
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'config', 'media')
+if not os.path.exists(MEDIA_ROOT):
+    os.mkdir(MEDIA_ROOT)
 MEDIA_URL = '/media/'
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
@@ -155,3 +157,7 @@ APILAYER_API_KEYS = os.getenv('APILAYER_API_KEYS', '').split(',')
 # telegram bot
 TELEGRAM_BOT_TOKEN = os.getenv('TELEGRAM_BOT_TOKEN')
 TELEGRAM_WEBHOOK_URL = os.getenv('TELEGRAM_WEBHOOK_URL')
+
+TELEGRAM_MEDIA_PATH = os.path.join(MEDIA_ROOT, 'telegram_bot')
+if not os.path.exists(TELEGRAM_MEDIA_PATH):
+    os.mkdir(TELEGRAM_MEDIA_PATH)
