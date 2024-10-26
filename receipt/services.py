@@ -57,9 +57,9 @@ class ReceiptService:
                 Product(
                     name=product_data.name,
                     name_original=product_data.name_original,
-                    name_en=product_data.name_en,
-                    name_ru=product_data.name_ru,
-                    name_ua=product_data.name_ua,
+                    name_en=product_data.name_en or product_data.name,
+                    name_ru=product_data.name_ru or product_data.name,
+                    name_ua=product_data.name_ua or product_data.name,
                     price=product_data.price,
                     category=product_data.category,
                     receipt=receipt,
