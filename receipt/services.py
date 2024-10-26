@@ -24,6 +24,9 @@ class ServiceProductData:
     name_original: str
     price: float
     category: ProductCategory
+    name_en: Optional[str] = None
+    name_ru: Optional[str] = None
+    name_ua: Optional[str] = None
 
 class ReceiptService:
 
@@ -54,6 +57,9 @@ class ReceiptService:
                 Product(
                     name=product_data.name,
                     name_original=product_data.name_original,
+                    name_en=product_data.name_en,
+                    name_ru=product_data.name_ru,
+                    name_ua=product_data.name_ua,
                     price=product_data.price,
                     category=product_data.category,
                     receipt=receipt,
