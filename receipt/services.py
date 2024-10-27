@@ -9,16 +9,6 @@ from datetime import datetime
 User = get_user_model()
 
 @dataclass
-class ServiceReceiptData:
-    shop_name: str
-    shop_address: str
-    owner: User
-    section: Section
-    currency: Currency
-    date: datetime
-    photo: str
-
-@dataclass
 class ServiceProductData:
     name: str
     name_original: str
@@ -27,6 +17,18 @@ class ServiceProductData:
     name_en: Optional[str] = None
     name_ru: Optional[str] = None
     name_ua: Optional[str] = None
+
+@dataclass
+class ServiceReceiptData:
+    shop_name: str
+    shop_address: str
+    owner: User
+    section: Section
+    currency: Currency
+    date: datetime
+    photo: str
+    products: list[ServiceProductData] = None
+
 
 class ReceiptService:
 
@@ -66,26 +68,17 @@ class ReceiptService:
                 )
                 for product_data in products_data
             ]
-            return Product.objects.bulk_create(products)
+            Product.objects.bulk_create(products)
+            return products
         except IntegrityError:
             return None
 
     @staticmethod
     @transaction.atomic
-    def create_receipt_with_products(
-            receipt_data: ServiceReceiptData,
-            products_data: Optional[list[ServiceProductData]] = None
-    ) -> Optional[tuple[Receipt, list[Product]]]:
-
-        if products_data is None:
-            products_data = []
+    def create_receipt_with_products(receipt_data: ServiceReceiptData) -> Optional[tuple[Receipt, list[Product]]]:
 
         receipt = ReceiptService.create_receipt(receipt_data)
         if receipt is None:
             return None
 
-        products = ReceiptService.create_products(receipt, products_data)
-        if products is None:
-            return None
-
-        return receipt, products
+        return receipt, ReceiptService.create_products(receipt, receipt_data.products)

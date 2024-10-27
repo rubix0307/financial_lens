@@ -106,22 +106,23 @@ class ReceiptServiceTests(TestCase):
             currency=self.currency,
             date=self.date,
             photo='test_photo.jpg',
+            products=[
+                ServiceProductData(
+                    name='Product 1',
+                    name_original='Product Original 1',
+                    price=10.0,
+                    category=self.product_category,
+                ),
+                ServiceProductData(
+                    name='Product 2',
+                    name_original='Product Original 2',
+                    price=20.0,
+                    category=self.product_category,
+                )
+            ],
         )
-        products_data = [
-            ServiceProductData(
-                name='Product 1',
-                name_original='Product Original 1',
-                price=10.0,
-                category=self.product_category,
-            ),
-            ServiceProductData(
-                name='Product 2',
-                name_original='Product Original 2',
-                price=20.0,
-                category=self.product_category,
-            )
-        ]
-        result = ReceiptService.create_receipt_with_products(receipt_data, products_data)
+
+        result = ReceiptService.create_receipt_with_products(receipt_data)
         self.assertIsNotNone(result)
         receipt, products = result
         self.assertEqual(receipt.shop_name, 'Test Shop')
@@ -136,14 +137,15 @@ class ReceiptServiceTests(TestCase):
             currency=self.currency,
             date=self.date,
             photo='test_photo.jpg',
+            products=[
+                ServiceProductData(
+                    name='Product 1',
+                    name_original='Product Original 1',
+                    price=10.0,
+                    category=self.product_category,
+                )
+            ],
         )
-        products_data = [
-            ServiceProductData(
-                name='Product 1',
-                name_original='Product Original 1',
-                price=10.0,
-                category=self.product_category,
-            )
-        ]
-        result = ReceiptService.create_receipt_with_products(receipt_data, products_data)
+
+        result = ReceiptService.create_receipt_with_products(receipt_data)
         self.assertIsNone(result)
