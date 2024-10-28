@@ -16,7 +16,7 @@ class UserService:
         return UserService.set_user_password(user=user, password=password)
 
     @staticmethod
-    def get_or_create_user_by_telegram_id(telegram_id, username=None, password=None) -> User:
+    def get_or_create_user_by_telegram_id(telegram_id, username, password=None) -> User:
         user, created = User.objects.get_or_create(
             telegram_id=telegram_id,
             defaults={

@@ -36,7 +36,8 @@ class UserServiceTest(TestCase):
             telegram_id=self.telegram_id
         )
         user = UserService.get_or_create_user_by_telegram_id(
-            telegram_id=self.telegram_id
+            telegram_id=self.telegram_id,
+            username=self.username,
         )
 
         self.assertIsNotNone(user.id)
