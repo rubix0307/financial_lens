@@ -138,3 +138,10 @@ class CurrencyRateService:
 
             with transaction.atomic():
                 CurrencyRateService._save_currency_rate_history_objects(currency_rate_history_objects)
+
+    @staticmethod
+    def check_or_fetch_currency_data(base_currency: str = 'USD', date: Optional[date_type] = None):
+        data_exists = CurrencyRateHistory.objects.filter(date__date=date).exists()
+        if not data_exists:
+            return CurrencyRateService.save_rates(base_currency=base_currency, date=date)
+        return data_exists

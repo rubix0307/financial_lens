@@ -1,4 +1,6 @@
 from dataclasses import dataclass
+
+from currency.services import CurrencyRateService
 from .models import Receipt, Product, Section, Currency, ProductCategory
 from django.contrib.auth import get_user_model
 from django.db import transaction, IntegrityError
@@ -36,7 +38,7 @@ class ReceiptService:
     @transaction.atomic
     def create_receipt(receipt_data: ServiceReceiptData) -> Optional[Receipt]:
         try:
-            return Receipt.objects.create(
+            receipt = Receipt.objects.create(
                 shop_name=receipt_data.shop_name,
                 shop_address=receipt_data.shop_address,
                 owner=receipt_data.owner,
@@ -45,6 +47,8 @@ class ReceiptService:
                 date=receipt_data.date,
                 photo=receipt_data.photo,
             )
+            CurrencyRateService().check_or_fetch_currency_data(date=receipt.date)
+            return receipt
         except IntegrityError:
             return None
 
@@ -81,4 +85,5 @@ class ReceiptService:
         if receipt is None:
             return None
 
-        return receipt, ReceiptService.create_products(receipt, receipt_data.products)
+        products = ReceiptService.create_products(receipt, receipt_data.products)
+        return receipt, products
